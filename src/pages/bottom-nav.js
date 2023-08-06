@@ -8,6 +8,10 @@ function BottomNav() {
       </Nav.Item>
       
       <Nav.Item>
+        <Nav.Link href="player-choice">Spielerwahl</Nav.Link>
+      </Nav.Item>
+
+      <Nav.Item>
         <Nav.Link href="impress">Impressum</Nav.Link>
       </Nav.Item>
     </Nav>

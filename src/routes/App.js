@@ -21,6 +21,7 @@ import Welcome from "../pages/Welcome";
 
 import Error from "../pages/errors/Error";
 import NotFound from "../pages/NotFound";
+import PlayerChoice from "../pages/PlayerChoice";
 
 /*
 * Welcome == Hauptseite
@@ -34,6 +35,8 @@ const router = createBrowserRouter(
       {/* <Route index element={<Welcome />} /> */}
 
       <Route path="welcome" element={<Welcome />}></Route>
+
+      <Route path="player-choice" element={<PlayerChoice />}></Route>
 
       <Route path="impress" element={<ImpressLayout />}>
         <Route index element={<Impress />} />
