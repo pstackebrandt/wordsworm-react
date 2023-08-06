@@ -1,6 +1,6 @@
 import React from "react"
 
-import PageTitle from '../pages/page-title';
+import PageTitle from './page-title';
 
 // Main content of the page
 export default function Welcome() {
