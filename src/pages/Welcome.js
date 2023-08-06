@@ -7,13 +7,37 @@ export default function Welcome() {
 
     return (
         <div className="welcome ms-5 me-5">
-            <PageTitle />
-            <h1 className="mt-5 m-5 text-center">Willkommen</h1>
-            <p className="text-center mb-2 fs-5">Diese Webseite befindet sich aktuell noch in der Entwicklungsphase.</p>
-            <p className="text-center mb-2 fs-5">Ich verwende sie als einfache Homepage und werde mit ihr auf andere Projekte
-             und Seiten von mir verweisen.</p>
-            <p className="text-center mb-2 fs-5">Zusätzlich ist diese Webseite ein aktuelles Übungsprojekt für das Erstellen
-             von React-Anwendungen sowie für das Hosten mit GitHub Pages.</p>
+            <PageTitle title="Wörterwurm " subtitle="Lasse den Wurm wachsen!" />
+
+            <div class="card mt-3">
+                <div class="card-body d-flex flex-column align-items-center"></div>
+                <p className="text-center mb-2 fs-5">Wörterwurm ist ein packendes Spiel, bei dem die Spieler einzeln oder in Teams darum wetteifern eine möglichst große Anzahl von Wörtern zu finden, die in einem bestimmten Zusammenhang stehen.</p>
+                <p className="text-center mb-2 fs-5">Bei jedem gefundenen Wort erfolgt eine spannende Zwischenauswertung, bevor der nächste Spieler seinen Zug beginnt. </p>
+                <p className="text-center mb-2 fs-5">Die entdeckten Wörter formen zusammen den "Wörterwurm", der mit jeder Ergänzung wächst und mehr Punkte für das Team und die individuellen Spieler generiert.</p>
+            </div>
+
+            <div class="card  mt-3">
+                <div class="card-body d-flex flex-column align-items-center">
+                    <h4 class="card-title mb-4">Möchtest du Spieler auswählen?</h4>
+                    <button id="choosePlayerButton" class="btn btn-primary">Spieler wählen</button>
+                </div>
+            </div>
+
+            <div class="card  mt-3">
+                <div class="card-body d-flex flex-column align-items-center">
+                    <h4 class="card-title mb-4">Möchtest du ohne Änderungen fortsetzen?</h4>
+                    <button id="startNewGameButton" class="btn btn-primary">Gleich spielen!</button>
+                </div>
+            </div>
+
+            <div class="card mt-3">
+                <div class="card-body d-flex flex-column align-items-center">
+                    <h4 class="card-title mb-4">Möchtest du dir die Spielstände ansehen?</h4>
+                    <button id="startNewGameButton" class="btn btn-primary">Zu den Spielständen</button>
+                </div>
+            </div>
+
         </div>
+
     );
 }
