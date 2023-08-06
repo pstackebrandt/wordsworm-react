@@ -6,7 +6,7 @@ function TopNav() {
   return (
     <Nav className="nav-centered nav-item-fill nav-link-dark mt-3">
       <Nav.Item>
-        <Nav.Link href="/">Home</Nav.Link>
+        <Nav.Link href="welcome">Willkommen</Nav.Link>
       </Nav.Item>
       
       <Nav.Item>

@@ -31,8 +31,10 @@ import NotFound from "../pages/NotFound";
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<RootLayout />} errorElement={<Error />}>
-      <Route index element={<Welcome />} />
-            
+      {/* <Route index element={<Welcome />} /> */}
+
+      <Route path="welcome" element={<Welcome />}></Route>
+
       <Route path="impress" element={<ImpressLayout />}>
         <Route index element={<Impress />} />
       </Route>
