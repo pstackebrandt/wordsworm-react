@@ -22,17 +22,16 @@ export default function Welcome() {
             <div className="card mt-3">
                 <div className="card-body d-flex flex-column align-items-center">
                     <h4 className="card-title mb-4">Möchtest du Spieler auswählen?</h4>
-                    <button id="choosePlayerButton" className="btn btn-primary">Spieler wählen</button>
+                    <Link to="/player-choice" className="btn btn-primary">Spieler wählen</Link>
                 </div>
             </div>
 
             <div className="card mt-3">
                 <div className="card-body d-flex flex-column align-items-center">
                     <h4 className="card-title mb-4">Möchtest du ohne Änderungen fortsetzen?</h4>
-                    <button id="startNewGameButton" className="btn btn-primary">Gleich spielen!</button>
+                    <Link to="/game" className="btn btn-primary">Gleich spielen!</Link>
                 </div>
             </div>
-
         </div>
 
     );

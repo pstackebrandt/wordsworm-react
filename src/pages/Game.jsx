@@ -5,8 +5,6 @@ import { Link } from "react-router-dom";
 
 import PageTitle from './PageTitle';
 
-
-
 // Main content of the page
 export default function Game() {
 
@@ -61,6 +59,7 @@ export default function Game() {
             {/* Spiel beenden */}
             <div id="finishGameArea" className="text-center">
                 <button id="endGameButton" className="btn btn-danger btn-lg">Spiel beenden</button>
+                <Link to="/game-end" className="btn btn-primary">Gleich spielen!</Link>
             </div>
 
         </div>

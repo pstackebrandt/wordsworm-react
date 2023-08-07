@@ -1,6 +1,7 @@
-// file PlayerChoice.js
+// file PlayerChoice.jsx
 
 import React from "react"
+import { Link } from "react-router-dom";
 
 import PageTitle from './PageTitle';
 import PlayerCard from './PlayerCard'
@@ -30,7 +31,7 @@ export default function PlayerChoice() {
             <div className="card mt-3">
                 <div className="card-body d-flex flex-column align-items-center">
                     <h4 className="card-title mb-4">Starte das nächste Spiel.</h4>
-                    <button id="startNewGameButton" className="btn btn-primary">Spielen!</button>
+                    <Link to="/game" className="btn btn-primary">Spielen!</Link>
                 </div>
             </div>
 

@@ -1,6 +1,7 @@
 // file GameEnd.jsx
 
 import React from "react"
+import { Link } from "react-router-dom";
 
 import PageTitle from './PageTitle';
 
@@ -24,7 +25,7 @@ export default function GameEnd() {
             <div className="card">
                 <div className="card-body d-flex flex-column align-items-center">
                     <h4 className="card-title mb-4">Möchtest du noch einmal spielen?</h4>
-                    <button id="startNewGameButton" className="btn btn-primary btn-lg">Noch ein Spiel!</button>
+                    <Link to="/game" className="btn btn-primary btn-lg">Noch ein Spiel!</Link>
                 </div>
             </div>
 
