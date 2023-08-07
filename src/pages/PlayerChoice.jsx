@@ -1,6 +1,7 @@
 // file PlayerChoice.jsx
 
-import React from "react"
+import React, {useContext} from "react"
+import GameContext from "./GameContext";
 import { Link } from "react-router-dom";
 
 import PageTitle from './PageTitle';
@@ -8,7 +9,8 @@ import PlayerCard from './PlayerCard'
 
 // Main content of the page
 export default function PlayerChoice() {
-
+    const { players } = useContext(GameContext);
+    
     return (
         <div className="welcome ms-5 me-5">
             <PageTitle title="Spielerwahl" subtitle="Wer spiel mit?" />
@@ -16,10 +18,10 @@ export default function PlayerChoice() {
             <div className="card mt-3">
                 <div className="card-body d-flex flex-column align-items-center"></div>
                 <p className="text-center mb-2 fs-5">Hier kannst du festlegen wieviele Spieler mitmachen und wie du sie nennst.</p>
-                <p className="text-center mb-2 fs-5">(1 Spieler ist voreingestellt und heißt Sonne.)</p>
+                <p className="text-center mb-2 fs-5">1 Spieler ist voreingestellt. Du kannst ihn umbenenen.</p>
             </div>
 
-            <PlayerCard />
+            {players.map(player => <PlayerCard key={player.name} player={player} />)}
 
             <div className="card mt-3">
                 <div className="card-body d-flex flex-column align-items-center">
