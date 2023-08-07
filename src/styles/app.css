@@ -16,3 +16,9 @@
 .flex-grow-1 {
   flex-grow: 1;
 }
+
+
+/* Required to show Button on 1 line  */
+#changeNameButton {
+  min-width: 15ch; 
+}

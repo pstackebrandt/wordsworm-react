@@ -31,8 +31,8 @@ function PlayerCard({ player }) {
                         onChange={(e) => setInputValue(e.target.value)}
                         onKeyPress={(e) => e.key === 'Enter' && handleNameChange()}
                     />
-                    <button 
-                        className="btn btn-secondary m-2"
+                    <button id='changeNameButton'
+                        className="btn btn-secondary m-2 button-no-wrap"
                         onClick={handleNameChange}
                     >
                         Name ändern
