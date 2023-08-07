@@ -12,19 +12,19 @@ export default function GameEnd() {
             <PageTitle title="Das Spiel ist vorbei!" subtitle="Auswertung der Wörtersuche" />
 
             {/* Game evaluation card */}
-            <div class="card mb-4">
-                <div class="card-body text-center">
-                    <h4 class="card-title">Lieber Spieler Clara <span id="teamNameDisplay"></span>!</h4>
-                    <p>Du hast <strong class="text-primary"><span id="wordCountDisplay"></span> Worte</strong> gefunden.</p>
-                    <p>Dabei hast du <strong class="text-primary"><span id="teamScoreDisplay"></span> Punkte</strong> erreicht.</p>
+            <div className="card mb-4">
+                <div className="card-body text-center">
+                    <h4 className="card-title">Lieber Spieler Clara <span id="teamNameDisplay"></span>!</h4>
+                    <p>Du hast <strong className="text-primary"><span id="wordCountDisplay"></span> Worte</strong> gefunden.</p>
+                    <p>Dabei hast du <strong className="text-primary"><span id="teamScoreDisplay"></span> Punkte</strong> erreicht.</p>
                 </div>
             </div>
 
             {/* Start new game */}
-            <div class="card">
-                <div class="card-body d-flex flex-column align-items-center">
-                    <h4 class="card-title mb-4">Möchtest du noch einmal spielen?</h4>
-                    <button id="startNewGameButton" class="btn btn-primary btn-lg">Noch ein Spiel!</button>
+            <div className="card">
+                <div className="card-body d-flex flex-column align-items-center">
+                    <h4 className="card-title mb-4">Möchtest du noch einmal spielen?</h4>
+                    <button id="startNewGameButton" className="btn btn-primary btn-lg">Noch ein Spiel!</button>
                 </div>
             </div>
 
