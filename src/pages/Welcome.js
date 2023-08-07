@@ -30,13 +30,6 @@ export default function Welcome() {
                 </div>
             </div>
 
-            <div class="card mt-3">
-                <div class="card-body d-flex flex-column align-items-center">
-                    <h4 class="card-title mb-4">Möchtest du dir die Spielstände ansehen?</h4>
-                    <button id="startNewGameButton" class="btn btn-primary">Zu den Spielständen</button>
-                </div>
-            </div>
-
         </div>
 
     );
