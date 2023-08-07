@@ -16,6 +16,10 @@ function BottomNav() {
       </Nav.Item>
 
       <Nav.Item>
+        <Nav.Link href="game-end">Ergebnisse</Nav.Link>
+      </Nav.Item>
+
+      <Nav.Item>
         <Nav.Link href="impress">Impressum</Nav.Link>
       </Nav.Item>
     </Nav>

@@ -18,6 +18,7 @@ import ImpressLayout from "../layouts/ImpressLayout";
 import Impress from '../pages/Impress';
 import Welcome from "../pages/Welcome";
 import Game from "../pages/Game";
+import GameEnd from "../pages/GameEnd";
 
 import Error from "../pages/errors/Error";
 import NotFound from "../pages/NotFound";
@@ -37,7 +38,7 @@ const router = createBrowserRouter(
       <Route path="welcome" element={<Welcome />}></Route>
       <Route path="player-choice" element={<PlayerChoice />}></Route>
       <Route path="game" element={<Game />}></Route>
-      {/* <Route path="results" element={<Results />}></Route> */}
+      <Route path="game-end" element={<GameEnd />}></Route>
 
       <Route path="impress" element={<ImpressLayout />}>
         <Route index element={<Impress />} />
