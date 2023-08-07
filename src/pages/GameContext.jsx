@@ -2,6 +2,15 @@
 
 import React from 'react';
 
-const GameContext = React.createContext();
+const defaultPlayer = {
+    name: "Gast",
+    foundWords: [],
+    Punkte: 0,
+  };
+  
+  const GameContext = React.createContext({
+    players: [defaultPlayer],
+    // Weitere Zustände und Funktionen...
+  });
 
 export default GameContext;
