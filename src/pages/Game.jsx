@@ -58,8 +58,7 @@ export default function Game() {
 
             {/* Spiel beenden */}
             <div id="finishGameArea" className="text-center">
-                <button id="endGameButton" className="btn btn-danger btn-lg">Spiel beenden</button>
-                <Link to="/game-end" className="btn btn-primary">Gleich spielen!</Link>
+                <Link to="/game-end" className="btn btn-danger btn-lg mt-5 mb-3">Spiel beenden</Link>
             </div>
 
         </div>
