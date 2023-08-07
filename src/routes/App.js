@@ -10,7 +10,6 @@ import {
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../styles/app.css';
 
-
 //Layouts
 import RootLayout from "../layouts/RootLayout";
 import ImpressLayout from "../layouts/ImpressLayout";
@@ -18,6 +17,7 @@ import ImpressLayout from "../layouts/ImpressLayout";
 // Pages
 import Impress from '../pages/Impress';
 import Welcome from "../pages/Welcome";
+import Game from "../pages/Game";
 
 import Error from "../pages/errors/Error";
 import NotFound from "../pages/NotFound";
@@ -32,11 +32,12 @@ import PlayerChoice from "../pages/PlayerChoice";
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<RootLayout />} errorElement={<Error />}>
-      {/* <Route index element={<Welcome />} /> */}
+      <Route index element={<Welcome />} />
 
       <Route path="welcome" element={<Welcome />}></Route>
-
       <Route path="player-choice" element={<PlayerChoice />}></Route>
+      <Route path="game" element={<Game />}></Route>
+      {/* <Route path="results" element={<Results />}></Route> */}
 
       <Route path="impress" element={<ImpressLayout />}>
         <Route index element={<Impress />} />
