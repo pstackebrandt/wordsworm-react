@@ -6,8 +6,8 @@ import { Outlet } from 'react-router-dom'
 // styles
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-import TopNav from '../pages/top-nav';
-import BottomNav from '../pages/bottom-nav';
+import TopNav from '../pages/TopNav';
+import BottomNav from '../pages/BottomNav';
 
 /**
  * Repräsentiert das Hauptlayout,

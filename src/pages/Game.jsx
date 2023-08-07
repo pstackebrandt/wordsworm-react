@@ -1,8 +1,11 @@
 // file Game.jsx
 
 import React from "react"
+import { Link } from "react-router-dom";
 
-import PageTitle from './page-title';
+import PageTitle from './PageTitle';
+
+
 
 // Main content of the page
 export default function Game() {

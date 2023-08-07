@@ -1,6 +1,9 @@
-import React from "react"
+// filename: Welcome.jsx
 
-import PageTitle from './page-title';
+import React from "react"
+import { Link } from "react-router-dom";
+
+import PageTitle from './PageTitle';
 
 // Main content of the page
 export default function Welcome() {

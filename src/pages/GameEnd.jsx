@@ -2,7 +2,7 @@
 
 import React from "react"
 
-import PageTitle from './page-title';
+import PageTitle from './PageTitle';
 
 // Main content of the page
 export default function GameEnd() {
