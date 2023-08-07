@@ -9,16 +9,14 @@ function PlayerCard({ player }) {
     const [inputValue, setInputValue] = useState(player.name);
 
     // Destructure the required values from the GameContext.
-    const { players, addPlayer } = useContext(GameContext);
+    const { players,  updatePlayer } = useContext(GameContext);
+
 
     // Function to handle changing of player's name.
     const handleNameChange = () => {
         // Check if the input has a value and if it's different from the current player name.
         if (inputValue && inputValue !== player.name) {
-            // Update the player's name within the list of players.
-            const updatedPlayers = players.map(p => p.name === player.name ? { ...p, name: inputValue } : p);
-            // Update the list of players.
-            addPlayer(updatedPlayers);
+            updatePlayer(player.id, { name: inputValue });
         }
     }
 

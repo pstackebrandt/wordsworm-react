@@ -17,7 +17,7 @@ export default function PlayerChoice() {
 
             <div className="card mt-3">
                 <div className="card-body d-flex flex-column align-items-center"></div>
-                <p className="text-center mb-2 fs-5">Hier kannst du festlegen wieviele Spieler mitmachen und wie du sie nennst.</p>
+                <p className="text-center mb-2 fs-5">Hier kannst du festlegen, wieviele Spieler mitmachen und wie du sie nennst.</p>
                 <p className="text-center mb-2 fs-5">1 Spieler ist voreingestellt. Du kannst ihn umbenenen.</p>
             </div>
 

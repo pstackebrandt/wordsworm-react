@@ -1,9 +1,12 @@
 // file: GameProvider.jsx
 
 import React, { useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
+
 import GameContext from './GameContext';
 
 const defaultPlayer = {
+    id: uuidv4(),
     name: "Gast",
     foundWords: [],
     Punkte: 0,
@@ -27,12 +30,22 @@ const GameProvider = ({ children }) => {
         setPlayers(newPlayers);
     };
 
+    const updatePlayer = (playerId, updatedPlayer) => {
+        setPlayers(prevPlayers => 
+            prevPlayers.map(player => 
+                player.id === playerId ? { ...player, ...updatedPlayer } : player
+            )
+        );
+    };
+    
+
     const value = {
         words,
         players,
         addWord,
         addPlayer, 
-        updatePlayers
+        updatePlayers,
+        updatePlayer
     };
 
     return (
