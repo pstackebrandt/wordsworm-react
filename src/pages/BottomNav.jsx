@@ -2,7 +2,7 @@ import Nav from 'react-bootstrap/Nav';
 
 function BottomNav() {
   return (
-    <Nav className="nav-centered nav-item-fill nav-link-dark mt-3">
+    <Nav className="nav-centered nav-item-fill nav-link-dark mt-3 mb-3">
       <Nav.Item>
         <Nav.Link href="welcome">Willkommen</Nav.Link>
       </Nav.Item>

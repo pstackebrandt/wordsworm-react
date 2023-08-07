@@ -16,42 +16,45 @@ import BottomNav from '../pages/BottomNav';
  * sicherstellt, dass die Inhalte anstelle
  * des Outlet Tags angezeigt werden.
  */
+import { Container, Row, Col } from 'react-bootstrap';
+
 export default function RootLayout() {
 
     function Header() {
-
         return (
-            <header className="text-center">
-                <TopNav />
-            </header>
+            <Row as="header" className="text-center mb-3">
+                <Col>
+                    <TopNav />
+                </Col>
+            </Row>
         );
     }
 
     function MainContent() {
         return (
-            <>
-                <main className="text-center">
-                  
-
+            <Row as="main" className="flex-grow-1 text-center mt-3">
+                <Col>
                     <Outlet />
-                </main>
-            </>
+                </Col>
+            </Row>
         );
     }
 
     function Footer() {
         return (
-            <footer className="text-center fixed-bottom">
-                <BottomNav />
-            </footer>
+            <Row as="footer" className="text-center">
+                <Col>
+                    <BottomNav />
+                </Col>
+            </Row>
         );
     }
 
     return (
-        <div className="root-layout">
+        <Container fluid className="d-flex flex-column min-vh-100">
             <Header />
             <MainContent />
             <Footer />
-        </div>
+        </Container>
     );
 }
