@@ -33,7 +33,7 @@ export default function RootLayout() {
     function MainContent() {
         return (
             <Row as="main" className="flex-grow-1 text-center mt-3">
-                <Col>
+                <Col xs={12} sm={10} md={8} lg={6} className="mx-auto">
                     <Outlet />
                 </Col>
             </Row>
