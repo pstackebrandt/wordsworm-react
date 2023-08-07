@@ -8,6 +8,8 @@ import {
   RouterProvider
 } from "react-router-dom"
 
+import GameProvider from '../pages/GameProvider';
+
 // styles
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../styles/app.css';
@@ -54,7 +56,9 @@ const router = createBrowserRouter(
 function App() {
 
   return (
-    <RouterProvider router={router} />
+    <GameProvider>
+      <RouterProvider router={router} />
+    </GameProvider>
   );
 }
 
