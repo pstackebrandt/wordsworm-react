@@ -1,4 +1,4 @@
-// file: RootLayout.js
+// file: RootLayout.jsx
 
 //ReactRouter Imports
 import { Outlet } from 'react-router-dom'
