@@ -29,7 +29,7 @@ function PlayerCard({ player }) {
                         className="form-control m-2"
                         value={inputValue}
                         onChange={(e) => setInputValue(e.target.value)}
-                        onKeyPress={(e) => e.key === 'Enter' && handleNameChange()}
+                        onKeyDown={(e) => e.key === 'Enter' && handleNameChange()}
                     />
                     <button id='changeNameButton'
                         className="btn btn-secondary m-2 button-no-wrap"
