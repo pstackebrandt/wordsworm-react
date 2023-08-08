@@ -26,8 +26,8 @@ export default function PlayerChoice() {
                 <p className="text-center mb-2 fs-5">1 Spieler ist voreingestellt. Du kannst ihn umbenenen.</p>
             </div>
 
-            {players.map(player => <PlayerCard key={player.name} player={player} />)}
-
+            {players.map(player => <PlayerCard key={player.id} player={player} />)}
+            
             <div className="card mt-3">
                 <div className="card-body d-flex flex-column align-items-center">
                     <h4 className="card-title mb-4">Möchtest du einen Spieler hinzufügen?</h4>
