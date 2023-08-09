@@ -29,24 +29,20 @@ const GameProvider = ({ children }) => {
     // 1. Daten aus dem Local Storage abrufen, wenn der Provider zum ersten Mal geladen wird
     useEffect(() => {
         console.log("GameProvider: useEffect: load data from local storage");
-        const savedWordList = localStorage.getItem('wordList');
-        const savedPlayerList = localStorage.getItem('playerList');
+        const wordsFromStore = localStorage.getItem('wordList');
+        const playersFromStore = localStorage.getItem('playerList');
 
-        console.log("GameProvider: useEffect: load from local store savedWordList: " + savedWordList);
-        console.log("GameProvider: useEffect: load from local store savedPlayerList: " + savedPlayerList);
+        console.log("GameProvider: useEffect: load from local store savedWordList: " + wordsFromStore);
+        console.log("GameProvider: useEffect: load from local store savedPlayerList: " + playersFromStore);
 
-        if (savedWordList) {
-            if (wordList) {
-                console.log("GameProvider: useEffect: use word list from local storage to init word list.");
-                setWordList(new Words(JSON.parse(savedWordList)));
-            }
+        if (wordsFromStore) {
+            console.log("GameProvider: useEffect: use word list from local storage to init word list.");
+            setWordList(new Words(JSON.parse(wordsFromStore)));
         }
 
-        if (savedPlayerList) {
-            if (playerList) {
-                console.log("GameProvider: useEffect: use player list from local storage to init player list.");
-                setPlayerList(new PlayerList(JSON.parse(savedPlayerList)));
-            }
+        if (playersFromStore) {
+            console.log("GameProvider: useEffect: use player list from local storage to init player list.");
+            setPlayerList(new PlayerList(JSON.parse(playersFromStore)));
         }
 
     }, []); // Mit einem leeren Abhängigkeitsarray stellen wir sicher, dass dieser Effekt nur beim ersten Render aufgerufen wird
