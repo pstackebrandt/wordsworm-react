@@ -43,7 +43,7 @@ const GameProvider = ({ children }) => {
         }
 
         if (savedPlayerList) {
-            if (wordList) {
+            if (playerList) {
                 console.log("GameProvider: useEffect: use player list from local storage to init player list.");
                 setPlayerList(new PlayerList(JSON.parse(savedPlayerList)));
             }
@@ -53,12 +53,17 @@ const GameProvider = ({ children }) => {
 
     // 2. Daten im Local Storage speichern, wann immer sich die Daten ändern
     useEffect(() => {
-        console.log("GameProvider: useEffect: save data to local storage");
-        localStorage.setItem('wordList', JSON.stringify(wordList.wordsList));
+        if (wordList) {
+            console.log("GameProvider: useEffect: save wordList to local storage");
+            localStorage.setItem('wordList', JSON.stringify(wordList.wordsList));
+        }
     }, [wordList]);
 
     useEffect(() => {
-        localStorage.setItem('playerList', JSON.stringify(playerList.players));
+        if (playerList) {
+            console.log("GameProvider: useEffect: save playerList to local storage");
+            localStorage.setItem('playerList', JSON.stringify(playerList.players));
+        }
     }, [playerList]);
 
     const addWord = (word) => {
