@@ -11,6 +11,7 @@ import Player from '../models/Player';
 import PlayerList from '../models/PlayerList';
 
 const GameProvider = ({ children }) => {
+    console.log("GameProvider: init with default words and players: " + defaultPlayer.name);
     const [wordList, setWordList] = useState(new Words());
     const initialPlayers = [defaultPlayer];
     const [playerList, setPlayerList] = useState(new PlayerList(initialPlayers));
@@ -19,20 +20,28 @@ const GameProvider = ({ children }) => {
 
     // 1. Daten aus dem Local Storage abrufen, wenn der Provider zum ersten Mal geladen wird
     useEffect(() => {
+        console.log("GameProvider: useEffect: load data from local storage");
         const savedWordList = localStorage.getItem('wordList');
         const savedPlayerList = localStorage.getItem('playerList');
 
+        console.log("GameProvider: useEffect: load from local store savedWordList: " + savedWordList);
+        console.log("GameProvider: useEffect: load from local store savedPlayerList: " + savedPlayerList);
+
         if (savedWordList) {
+            console.log("GameProvider: useEffect: use word list from local storage to init word list.");
             setWordList(new Words(JSON.parse(savedWordList)));
         }
 
         if (savedPlayerList) {
+            console.log("GameProvider: useEffect: use player list from local storage to init player list.");
             setPlayerList(new PlayerList(JSON.parse(savedPlayerList)));
         }
+
     }, []); // Mit einem leeren Abhängigkeitsarray stellen wir sicher, dass dieser Effekt nur beim ersten Render aufgerufen wird
 
     // 2. Daten im Local Storage speichern, wann immer sich die Daten ändern
     useEffect(() => {
+        console.log("GameProvider: useEffect: save data to local storage");
         localStorage.setItem('wordList', JSON.stringify(wordList.wordsList));
     }, [wordList]);
 
