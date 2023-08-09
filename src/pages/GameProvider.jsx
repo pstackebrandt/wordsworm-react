@@ -1,6 +1,6 @@
 // file: GameProvider.jsx
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 // Components
 import GameContext, { defaultPlayer } from './GameContext';
@@ -16,6 +16,29 @@ const GameProvider = ({ children }) => {
     const [playerList, setPlayerList] = useState(new PlayerList(initialPlayers));
 
     console.log("GameProvider: playerList length after init with default player: " + playerList.players.length);
+
+    // 1. Daten aus dem Local Storage abrufen, wenn der Provider zum ersten Mal geladen wird
+    useEffect(() => {
+        const savedWordList = localStorage.getItem('wordList');
+        const savedPlayerList = localStorage.getItem('playerList');
+
+        if (savedWordList) {
+            setWordList(new Words(JSON.parse(savedWordList)));
+        }
+
+        if (savedPlayerList) {
+            setPlayerList(new PlayerList(JSON.parse(savedPlayerList)));
+        }
+    }, []); // Mit einem leeren Abhängigkeitsarray stellen wir sicher, dass dieser Effekt nur beim ersten Render aufgerufen wird
+
+    // 2. Daten im Local Storage speichern, wann immer sich die Daten ändern
+    useEffect(() => {
+        localStorage.setItem('wordList', JSON.stringify(wordList.wordsList));
+    }, [wordList]);
+
+    useEffect(() => {
+        localStorage.setItem('playerList', JSON.stringify(playerList.players));
+    }, [playerList]);
 
     const addWord = (word) => {
         wordList.addWord(word);
