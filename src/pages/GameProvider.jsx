@@ -99,6 +99,14 @@ const GameProvider = ({ children }) => {
         }
     };
 
+    const deletePlayer = (playerId) => {
+        setPlayerList(prevList => {
+            const newPlayerList = new PlayerList([...prevList.players]);
+            newPlayerList.removePlayerById(playerId);
+            return newPlayerList;
+        });
+    };
+
     /**
      * The `value` object represents the context value for the GameProvider.
      * 
@@ -117,7 +125,8 @@ const GameProvider = ({ children }) => {
         addWord,
         addPlayer,
         updatePlayer,
-        addDefaultPlayer
+        addDefaultPlayer,
+        deletePlayer 
     };
 
     return (

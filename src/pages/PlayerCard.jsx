@@ -8,7 +8,7 @@ function PlayerCard({ player }) {
     const [inputValue, setInputValue] = useState(player.name);
 
     // Get the updatePlayer function from the GameContext.
-    const { updatePlayer } = useContext(GameContext);
+    const { updatePlayer, deletePlayer } = useContext(GameContext);
 
     // Update the player's name when it changes.
     const handleNameChange = () => {
@@ -38,8 +38,7 @@ function PlayerCard({ player }) {
                         Name ändern
                     </button>
                 </div>
-                {/* Delete player functionality yet to be implemented. */}
-                <button className="btn btn-danger">Spieler löschen</button>
+                <button className="btn btn-danger" onClick={() => deletePlayer(player.id)}>Spieler löschen</button>
             </div>
         </div>
     );
