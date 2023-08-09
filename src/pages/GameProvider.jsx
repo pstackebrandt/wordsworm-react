@@ -14,32 +14,24 @@ const GameProvider = ({ children }) => {
     const [wordList, setWordList] = useState(new Words());
     const [playerList, setPlayerList] = useState(new PlayerList());
     
-    // Add default player when the component is first rendered.
-    useEffect(() => {
-        const defaultPlayer = Player.generateDefaultPlayer();
-        playerList.addPlayer(defaultPlayer);
-        setPlayerList(prev => {
-            const updatedList = new PlayerList();
-            updatedList.players = [...prev.players];
-            return updatedList;
-        });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);  // Beachten Sie die leere Abhängigkeitsliste, damit dieser useEffect nur beim ersten Render aufgerufen wird.
-    
+// Add default player when the component is first rendered.
+useEffect(() => {
+    addDefaultPlayer();
+// eslint-disable-next-line react-hooks/exhaustive-deps
+}, []);  // Empty list required to run only once when the component mounts    
     const addWord = (word) => {
         wordList.addWord(word);
         setWordList(new Words([...wordList.wordsList])); // A little trick to trigger re-render
     };
 
     const addPlayer = (name) => {
-        const player = new Player(name);
-        playerList.addPlayer(player);
-        setPlayerList(new PlayerList([...playerList.players])); // Again, to trigger re-render
-    };
-
-    const addDefaultPlayer = () => {
-        const defaultName = `Spieler ${Math.floor(Math.random() * 1000)}`;
-        addPlayer(defaultName);
+        setPlayerList(prevList => {
+            const newPlayerList = new PlayerList();
+            newPlayerList.players = [...prevList.players];
+            const newPlayer = new Player(name);
+            newPlayerList.addPlayer(newPlayer);
+            return newPlayerList;
+        });
     };
 
     /**
@@ -58,6 +50,16 @@ const GameProvider = ({ children }) => {
             // Sets the player list state with a new instance to trigger a re-render.
             setPlayerList(new PlayerList([...playerList.players]));
         }
+    };
+
+    const addDefaultPlayer = () => {
+        setPlayerList(prevList => {
+            const newPlayerList = new PlayerList();
+            newPlayerList.players = [...prevList.players];
+            const defaultPlayer = Player.generateDefaultPlayer();
+            newPlayerList.addPlayer(defaultPlayer);
+            return newPlayerList;
+        });
     };
 
     /**
