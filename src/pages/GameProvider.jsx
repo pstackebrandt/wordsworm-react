@@ -1,9 +1,9 @@
 // file: GameProvider.jsx
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 // Components
-import GameContext from './GameContext';
+import GameContext, { defaultPlayer } from './GameContext';
 
 // Importing your classes
 import Words from '../models/Words';
@@ -12,13 +12,11 @@ import PlayerList from '../models/PlayerList';
 
 const GameProvider = ({ children }) => {
     const [wordList, setWordList] = useState(new Words());
-    const [playerList, setPlayerList] = useState(new PlayerList());
-    
-// Add default player when the component is first rendered.
-useEffect(() => {
-    addDefaultPlayer();
-// eslint-disable-next-line react-hooks/exhaustive-deps
-}, []);  // Empty list required to run only once when the component mounts    
+    const initialPlayers = [defaultPlayer];
+    const [playerList, setPlayerList] = useState(new PlayerList(initialPlayers));
+
+    console.log("GameProvider: playerList length after init with default player: " + playerList.players.length);
+
     const addWord = (word) => {
         wordList.addWord(word);
         setWordList(new Words([...wordList.wordsList])); // A little trick to trigger re-render
@@ -52,16 +50,6 @@ useEffect(() => {
         }
     };
 
-    const addDefaultPlayer = () => {
-        setPlayerList(prevList => {
-            const newPlayerList = new PlayerList();
-            newPlayerList.players = [...prevList.players];
-            const defaultPlayer = Player.generateDefaultPlayer();
-            newPlayerList.addPlayer(defaultPlayer);
-            return newPlayerList;
-        });
-    };
-
     /**
      * The `value` object represents the context value for the GameProvider.
      * 
@@ -79,7 +67,6 @@ useEffect(() => {
         players: playerList.players,
         addWord,
         addPlayer,
-        addDefaultPlayer,
         updatePlayer
     };
 

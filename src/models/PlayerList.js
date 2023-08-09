@@ -2,8 +2,8 @@
 // path: src\models\PlayerList.js
 
 class PlayerList {
-    constructor() {
-        this.players = [];
+    constructor(players = []) {
+        this.players = players;
     }
 
     addPlayer(player) {
