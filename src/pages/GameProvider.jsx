@@ -10,12 +10,42 @@ import Words from '../models/Words';
 import Player from '../models/Player';
 import PlayerList from '../models/PlayerList';
 
+/**
+ * GameProvider component serves as the context provider for the game's state.
+ * It handles:
+ * - Retrieval of game data from the local storage.
+ * - Persistence of game data to local storage.
+ * - Providing game-related operations such as adding words and players.
+ * 
+ * @param {object} props - Component properties.
+ * @param {ReactNode} props.children - Child elements to be wrapped by the context provider.
+ */
 const GameProvider = ({ children }) => {
     console.log("GameProvider: init with default words and players: " + defaultPlayer.name);
-    const [wordList, setWordList] = useState(new Words());
-    const initialPlayers = [defaultPlayer];
-    const [playerList, setPlayerList] = useState(new PlayerList(initialPlayers));
 
+    const [wordList, setWordList] = useState(null);
+    const [playerList, setPlayerList] = useState(null); // Start with a null value
+
+    useEffect(() => {
+        console.log("GameProvider: useEffect: load data from local storage");
+        const savedWordList = localStorage.getItem('wordList');
+        const savedPlayerList = localStorage.getItem('playerList');
+    
+        if (savedWordList) {
+            setWordList(new Words(JSON.parse(savedWordList)));
+        } else {    
+            // Wenn keine Daten im Local Storage vorhanden sind, initialisieren Sie mit dem Default-Wert
+            setWordList(new Words());
+        }
+    
+        if (savedPlayerList) {
+            setPlayerList(new PlayerList(JSON.parse(savedPlayerList)));
+        } else {
+            // Wenn keine Daten im Local Storage vorhanden sind, initialisieren Sie mit dem Default-Wert
+            setPlayerList(new PlayerList([defaultPlayer]));
+        }
+    }, []);
+    
     console.log("GameProvider: playerList length after init with default player: " + playerList.players.length);
 
     // 1. Daten aus dem Local Storage abrufen, wenn der Provider zum ersten Mal geladen wird
