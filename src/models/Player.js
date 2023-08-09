@@ -7,8 +7,8 @@ class Player {
     constructor(name = Player.generateDefaultPlayerName(), foundWords = [], score = 0) {
         this.id = uuidv4();
         this.name = name;
-        this.foundWords = []; 
-        this.score = 0;
+        this.foundWords = foundWords; 
+        this.score = score;
     }
 
     addWord(word) {
