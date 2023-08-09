@@ -32,6 +32,10 @@ const GameProvider = ({ children }) => {
         });
     };
 
+    const addDefaultPlayer = () => {
+        addPlayer(Player.generateDefaultPlayerName());
+    };
+
     /**
      * Updates the properties of a player given their ID and the new data.
      * 
@@ -67,7 +71,8 @@ const GameProvider = ({ children }) => {
         players: playerList.players,
         addWord,
         addPlayer,
-        updatePlayer
+        updatePlayer,
+        addDefaultPlayer
     };
 
     return (
