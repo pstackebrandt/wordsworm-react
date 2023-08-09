@@ -36,13 +36,17 @@ const GameProvider = ({ children }) => {
         console.log("GameProvider: useEffect: load from local store savedPlayerList: " + savedPlayerList);
 
         if (savedWordList) {
-            console.log("GameProvider: useEffect: use word list from local storage to init word list.");
-            setWordList(new Words(JSON.parse(savedWordList)));
+            if (wordList) {
+                console.log("GameProvider: useEffect: use word list from local storage to init word list.");
+                setWordList(new Words(JSON.parse(savedWordList)));
+            }
         }
 
         if (savedPlayerList) {
-            console.log("GameProvider: useEffect: use player list from local storage to init player list.");
-            setPlayerList(new PlayerList(JSON.parse(savedPlayerList)));
+            if (wordList) {
+                console.log("GameProvider: useEffect: use player list from local storage to init player list.");
+                setPlayerList(new PlayerList(JSON.parse(savedPlayerList)));
+            }
         }
 
     }, []); // Mit einem leeren Abhängigkeitsarray stellen wir sicher, dass dieser Effekt nur beim ersten Render aufgerufen wird
