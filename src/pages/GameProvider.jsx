@@ -1,69 +1,84 @@
 // file: GameProvider.jsx
 
-import React, { useState } from 'react';
-import { v4 as uuidv4 } from 'uuid';
+import React, { useState, useEffect } from 'react';
 
 // Components
 import GameContext from './GameContext';
 
-const generateDefaultPlayerName = () => `Spieler ${Math.floor(Math.random() * 1000)}`;
-
-const defaultPlayer = {
-    id: uuidv4(),
-    name: generateDefaultPlayerName(),
-    // foundWords: [], // no default words for production
-    foundWords: process.env.NODE_ENV === 'development' ? ["Anton", "Nena", "Ast"] : [],
-    score: process.env.NODE_ENV === 'development' ? 300 : 0,
-};
-
-// use of GameProvider see at end of this chat: https://chat.openai.com/share/9decdb18-a8f4-4783-8f99-4a69dbcc903a
+// Importing your classes
+import Words from '../models/Words';
+import Player from '../models/Player';
+import PlayerList from '../models/PlayerList';
 
 const GameProvider = ({ children }) => {
-    const [words, setWords] = useState([]);
-    const [players, setPlayers] = useState([defaultPlayer]);
-
+    const [wordList, setWordList] = useState(new Words());
+    const [playerList, setPlayerList] = useState(new PlayerList());
+    
+    // Add default player when the component is first rendered.
+    useEffect(() => {
+        const defaultPlayer = Player.generateDefaultPlayer();
+        playerList.addPlayer(defaultPlayer);
+        setPlayerList(prev => {
+            const updatedList = new PlayerList();
+            updatedList.players = [...prev.players];
+            return updatedList;
+        });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);  // Beachten Sie die leere Abhängigkeitsliste, damit dieser useEffect nur beim ersten Render aufgerufen wird.
+    
     const addWord = (word) => {
-        setWords(prevWords => [...prevWords, word]);
+        wordList.addWord(word);
+        setWordList(new Words([...wordList.wordsList])); // A little trick to trigger re-render
     };
 
-    const addPlayer = (player) => {
-        if (player) {
-            setPlayers(prevPlayers => [...prevPlayers, player]);
-            console.log("Player added: ", player);
-        }
+    const addPlayer = (name) => {
+        const player = new Player(name);
+        playerList.addPlayer(player);
+        setPlayerList(new PlayerList([...playerList.players])); // Again, to trigger re-render
     };
 
     const addDefaultPlayer = () => {
-        const defaultPlayer = {
-            id: uuidv4(),
-            name: generateDefaultPlayerName(),
-            foundWords: [],
-            score: 0,
+        const defaultName = `Spieler ${Math.floor(Math.random() * 1000)}`;
+        addPlayer(defaultName);
+    };
+
+    /**
+     * Updates the properties of a player given their ID and the new data.
+     * 
+     * @param {string} playerId - The unique identifier for the player to be updated.
+     * @param {object} updatedPlayerData - An object containing the updated player data. 
+     *      Possible properties include: `name`, `foundWords`, and `score`.
+     */
+    const updatePlayer = (playerId, updatedPlayerData) => {
+        const player = playerList.getPlayerById(playerId);
+        if (player) {
+            if (updatedPlayerData.name) player.name = updatedPlayerData.name;
+            if (updatedPlayerData.foundWords) player.foundWords = updatedPlayerData.foundWords;
+            if (updatedPlayerData.score) player.score = updatedPlayerData.score;
+            // Sets the player list state with a new instance to trigger a re-render.
+            setPlayerList(new PlayerList([...playerList.players]));
         }
-
-        addPlayer(defaultPlayer);
     };
 
-    const updatePlayer = (playerId, updatedPlayer) => {
-        setPlayers(prevPlayers =>
-            prevPlayers.map(player =>
-                player.id === playerId ? { ...player, ...updatedPlayer } : player
-            )
-        );
-    };
-
-    const updatePlayers = (newPlayers) => {
-        setPlayers(newPlayers);
-    };
-
+    /**
+     * The `value` object represents the context value for the GameProvider.
+     * 
+     * Properties:
+     * - `words`: An array of words that players can find. Derived from the `wordList` class instance.
+     * - `players`: An array of player objects, each with properties such as `id`, `name`, `foundWords`,
+     *              and `score`. Derived from the `playerList` class instance.
+     * - `addWord`: A function to add a word to the `wordList`.
+     * - `addPlayer`: A function to add a new player to the `playerList`.
+     * - `addDefaultPlayer`: A function to add a default player to the `playerList`.
+     * - `updatePlayer`: A function to update an existing player's properties in the `playerList`.
+     */
     const value = {
-        words,
-        players,
+        words: wordList.wordsList,
+        players: playerList.players,
         addWord,
         addPlayer,
         addDefaultPlayer,
-        updatePlayer,
-        updatePlayers,
+        updatePlayer
     };
 
     return (
