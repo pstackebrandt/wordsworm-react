@@ -48,6 +48,8 @@ export default function Game() {
     const [wordInput, setWordInput] = useState(""); // State for the word input
     const [emptyInputs, setEmptyInputs] = useState(0); // State for tracking empty inputs
 
+    const [foundWords, setFoundWords] = useState([currentWord]); // Initialisieren Sie die gefundenen Wörter mit dem Startwort
+
     const handleAddWord = () => {
         if (!wordInput.trim()) { // Check if input is empty or just whitespace
             setEmptyInputs(prevEmpty => prevEmpty + 1);
@@ -57,10 +59,18 @@ export default function Game() {
             } else {
                 document.getElementById("wordInputFeedback").innerText = "Du hast nichts eingegeben. Wenn du zweimal nacheinander nichts eingibst, beenden wird das Spiel. 😉";
             }
-        } else {
-            // Logic to handle the input word (assuming the word is valid for now)
+        } else if (wordInput[0].toUpperCase() === foundWords[foundWords.length - 1].slice(-1).toUpperCase()) {
+            // Das Wort passt zum letzten Wort
+            setFoundWords(prevWords => [...prevWords, wordInput]);
+
+            // Wort zum aktuellen Spieler hinzufügen
+            players[currentPlayerIndex].addWord(wordInput);
+            
             setEmptyInputs(0);
-            // You may need to implement further checks here
+            document.getElementById("wordInputFeedback").innerText = "Das hast du gut gemacht! 🌞";
+        } else {
+            // Das Wort passt nicht
+            document.getElementById("wordInputFeedback").innerText = "Das Wort passt nicht zum letzten Wort. Versuche es noch einmal!";
         }
         setWordInput(""); // Reset input
     };
@@ -152,7 +162,9 @@ export default function Game() {
                     <h2 className="card-title">Gefundene Wörter</h2>
                     <p className="text-center mb-2 fs-5">Wortschlange anzeigen</p>
                     <div id="foundWordsDisplay" className="word-list d-flex justify-content-center">
-                        <span style={{ fontWeight: 'bold', color: 'blue' }}>{currentWord}</span>
+                        {foundWords.map((word, index) => (
+                            <span key={index} style={index === 0 ? { fontWeight: 'bold', color: 'blue' } : {}}>{word}</span>
+                        ))}
                     </div>
                 </div>
             </div>

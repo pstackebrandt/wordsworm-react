@@ -37,12 +37,15 @@ const GameProvider = ({ children }) => {
 
         if (wordsFromStore) {
             console.log("GameProvider: useEffect: use word list from local storage to init word list.");
-            setFoundWordList(new FoundWords(JSON.parse(wordsFromStore)));
+            const rawFoundWords = JSON.parse(wordsFromStore);
+            setFoundWordList(new FoundWords(rawFoundWords));
         }
 
         if (playersFromStore) {
             console.log("GameProvider: useEffect: use player list from local storage to init player list.");
-            setPlayerList(new PlayerList(JSON.parse(playersFromStore)));
+            const rawPlayers = JSON.parse(playersFromStore);
+            const instantiatedPlayers = rawPlayers.map(playerData => new Player(playerData.name, playerData.foundWords, playerData.score));
+            setPlayerList(new PlayerList(instantiatedPlayers));
         }
 
     }, []); // Mit einem leeren Abhängigkeitsarray stellen wir sicher, dass dieser Effekt nur beim ersten Render aufgerufen wird
@@ -79,6 +82,22 @@ const GameProvider = ({ children }) => {
 
     const addDefaultPlayer = () => {
         addPlayer(Player.generateDefaultPlayerName());
+    };
+
+    /**
+     * Allows a player to add a word to their list of found words.
+     * 
+     * @param {string} playerId - The unique identifier for the player.
+     * @param {string} word - The word to be added to the player's list.
+     */
+    const addPlayerWord = (playerId, word) => {
+        const player = playerList.getPlayerById(playerId);
+        if (player) {
+            player.addWord(word);
+            // Optional: If you wish to update the player's score based on the word, do it here.
+            // player.updateScore(score); // Assuming 'score' is calculated based on the word or some other criteria.
+            setPlayerList(new PlayerList([...playerList.players])); // This triggers a re-render.
+        }
     };
 
     /**
@@ -125,6 +144,7 @@ const GameProvider = ({ children }) => {
         addWord: addFoundWord,
         addPlayer,
         updatePlayer,
+        addPlayerWord,
         addDefaultPlayer,
         deletePlayer
     };

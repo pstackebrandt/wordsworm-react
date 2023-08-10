@@ -12,8 +12,10 @@ class Player {
     }
 
     addWord(word) {
-        this.foundWords.push(word);
-        // Hier können Sie auch die Punktzahl des Spielers basierend auf dem Wort aktualisieren.
+        if (word && word.trim() !== "") {
+            this.foundWords.push(word);
+            // Hier können Sie auch die Punktzahl des Spielers basierend auf dem Wort aktualisieren.
+        }
     }
 
     updateScore(points) {
