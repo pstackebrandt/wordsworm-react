@@ -6,7 +6,7 @@ import React, { useState, useEffect } from 'react';
 import GameContext, { defaultPlayer } from './GameContext';
 
 // Importing your classes
-import Words from '../models/Words';
+import FoundWords from '../models/FoundWords';
 import Player from '../models/Player';
 import PlayerList from '../models/PlayerList';
 
@@ -21,9 +21,9 @@ import PlayerList from '../models/PlayerList';
  * @param {ReactNode} props.children - Child elements to be wrapped by the context provider.
  */
 const GameProvider = ({ children }) => {
-    console.log("GameProvider start. I don't init wordList and playerList.");
+    console.log("GameProvider start. I init foundWordsList and playerList with null.");
 
-    const [wordList, setWordList] = useState(null);
+    const [foundWordsList, setFoundWordList] = useState(null);
     const [playerList, setPlayerList] = useState(null); // Start with a null value
 
     // 1. Daten aus dem Local Storage abrufen, wenn der Provider zum ersten Mal geladen wird
@@ -37,7 +37,7 @@ const GameProvider = ({ children }) => {
 
         if (wordsFromStore) {
             console.log("GameProvider: useEffect: use word list from local storage to init word list.");
-            setWordList(new Words(JSON.parse(wordsFromStore)));
+            setFoundWordList(new FoundWords(JSON.parse(wordsFromStore)));
         }
 
         if (playersFromStore) {
@@ -49,11 +49,11 @@ const GameProvider = ({ children }) => {
 
     // 2. Daten im Local Storage speichern, wann immer sich die Daten ändern
     useEffect(() => {
-        if (wordList) {
+        if (foundWordsList) {
             console.log("GameProvider: useEffect: save wordList to local storage");
-            localStorage.setItem('wordList', JSON.stringify(wordList.wordsList));
+            localStorage.setItem('wordList', JSON.stringify(foundWordsList.words));
         }
-    }, [wordList]);
+    }, [foundWordsList]);
 
     useEffect(() => {
         if (playerList) {
@@ -62,9 +62,9 @@ const GameProvider = ({ children }) => {
         }
     }, [playerList]);
 
-    const addWord = (word) => {
-        wordList.addWord(word);
-        setWordList(new Words([...wordList.wordsList])); // A little trick to trigger re-render
+    const addFoundWord = (word) => {
+        foundWordsList.addWord(word);
+        setFoundWordList(new FoundWords([...foundWordsList.words])); // A little trick to trigger re-render
     };
 
     const addPlayer = (name) => {
@@ -120,13 +120,13 @@ const GameProvider = ({ children }) => {
      * - `updatePlayer`: A function to update an existing player's properties in the `playerList`.
      */
     const value = {
-        words: wordList ? wordList.wordsList : [],
+        words: foundWordsList ? foundWordsList.words : [],
         players: playerList ? playerList.players : [],
-        addWord,
+        addWord: addFoundWord,
         addPlayer,
         updatePlayer,
         addDefaultPlayer,
-        deletePlayer 
+        deletePlayer
     };
 
     return (
