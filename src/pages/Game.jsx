@@ -22,11 +22,21 @@ export default function Game() {
     // State für die Sichtbarkeit des Inhalts
     const [contentVisible, setContentVisible] = useState(false);
 
+    const getIndexOfNextPlayer = (prevIndex) => (prevIndex + 1) % players.length;
+
+    const getCurrentPlayer = () => { return players[currentPlayerIndex]; };
+    
+    // Nächsten Spieler auswählen
+    function setNextPlayer() {
+        const nextPlayerIndex = getIndexOfNextPlayer(currentPlayerIndex);
+        setCurrentPlayerIndex(nextPlayerIndex);
+        setPlayerMessage(`${players[nextPlayerIndex].name} ist dran!`);
+    }
+
     const startGame = () => {
         setContentVisible(true);
 
-        // Nächsten Spieler auswählen
-        setCurrentPlayerIndex((prevIndex) => (prevIndex + 1) % players.length);
+        setNextPlayer();
     };
 
     // Die Liste mit 20 Wörtern
@@ -71,6 +81,7 @@ export default function Game() {
             setEmptyInputs(0);
             document.getElementById("wordInputFeedback").innerText = "Das hast du gut gemacht! 🌞";
 
+            setNextPlayer();
         } else { // Das Wort passt nicht
             document.getElementById("wordInputFeedback").innerText = "Das Wort passt nicht zum letzten Wort. Versuche es noch einmal!";
         }
@@ -89,6 +100,8 @@ export default function Game() {
         }
     };
 
+    const [playerMessage, setPlayerMessage] = useState(`Hallo Spieler!`);
+
     // Function to be executed when the game finishes.
     const finishGame = () => {
         // Save the foundWords to the local storage
@@ -100,7 +113,7 @@ export default function Game() {
         // Navigate to the game end page
         window.location.href = "/game-end";
     };
-
+    
     return (
         <div className="welcome ms-5 me-5">
             <PageTitle title="Wörterwurm" subtitle="Füttere Deinen Wurm!" />
@@ -115,7 +128,7 @@ export default function Game() {
             {/* Aktuelle Spieler nennen */}
             <div className="card mt-3">
                 <div className="card-body d-flex flex-column align-items-center">
-                    <h2 id="currentPlayerMessage" className="card-title mb-4">Hallo {currentPlayerName}!</h2>
+                    <h2 id="currentPlayerMessage" className="card-title mb-4">{playerMessage}</h2>
                 </div>
                 <div className="card-body d-flex flex-column align-items-center">
                     {/* Use d-flex for horizontal listing of player names */}
