@@ -1,13 +1,30 @@
 // file GameEnd.jsx
+// path src\pages\GameEnd.jsx
 
-import React from "react"
+import React, { useState, useEffect }  from "react"
 import { Link } from "react-router-dom";
 
 import PageTitle from './PageTitle';
 
 // Main content of the page
 export default function GameEnd() {
+    // Initialize state for players and foundWords
+    const [players, setPlayers] = useState([]);
+    const [foundWords, setFoundWords] = useState([]);
 
+    useEffect(() => {
+        // Fetch the data from the local storage
+        const storedPlayers = localStorage.getItem('playerList');
+        const storedFoundWords = localStorage.getItem('foundWords');
+
+        if (storedPlayers) {
+            setPlayers(JSON.parse(storedPlayers));
+        }
+
+        if (storedFoundWords) {
+            setFoundWords(JSON.parse(storedFoundWords));
+        }
+    }, []); // Empty dependency array to run only once
     return (
         <div className="welcome ms-5 me-5">
             <PageTitle title="Das Spiel ist vorbei!" subtitle="Auswertung der Wörtersuche" />
