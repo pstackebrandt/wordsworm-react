@@ -128,9 +128,9 @@ export default function Game() {
             </div>
 
             {/* Aktuelle Spieler nennen */}
-            <div className="card mt-3">
+            <div className="card mt-3 mb-3">
                 <div className="card-body d-flex flex-column align-items-center">
-                    <h2 id="currentPlayerMessage" className="card-title mb-4">{playerMessage}</h2>
+                    <h2 id="currentPlayerMessage" className="card-title mb-0 mt-2">{playerMessage}</h2>
                 </div>
                 <div className="card-body d-flex flex-column align-items-center">
                     {/* Use d-flex for horizontal listing of player names */}
@@ -148,13 +148,13 @@ export default function Game() {
             {!contentVisible &&
                 <div className="d-flex justify-content-center align-items-center vh-20 m-5">
                     <button className="btn btn-primary btn-lg rounded-circle big-round-button" onClick={startGame}>
-                        Los geht’s!
+                        Los gehts!
                     </button>
                 </div>
             }
 
             {/* Worteingabe - nur sichtbar, wenn contentVisible true ist */}
-            <div id="wordInputArea" className="card mb-4" style={{ display: contentVisible ? 'block' : 'none' }}>
+            <div id="wordInputArea" className="card mb-3 mt=3" style={{ display: contentVisible ? 'block' : 'none' }}>
 
                 <div className="card-body">
                     <h2 className="card-title">Wort hinzufügen</h2>
@@ -185,7 +185,7 @@ export default function Game() {
             </div>
 
             {/* Gefundene Wörter - nur sichtbar, wenn contentVisible true ist */}
-            <div id="foundWordsArea" className="card mb-4" style={{ display: contentVisible ? 'block' : 'none' }}>
+            <div id="foundWordsArea" className="card mb-3 mt-3" style={{ display: contentVisible ? 'block' : 'none' }}>
                 <div className="card-body">
                     <h2 className="card-title">Gefundene Wörter</h2>
                     <p className="text-center mb-2 fs-5">Wortschlange anzeigen</p>
