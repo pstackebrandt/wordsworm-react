@@ -44,6 +44,40 @@ export default function Game() {
         return startWords[randomIndex];
     });
 
+    // Add new states
+    const [wordInput, setWordInput] = useState(""); // State for the word input
+    const [emptyInputs, setEmptyInputs] = useState(0); // State for tracking empty inputs
+
+    const handleAddWord = () => {
+        if (!wordInput.trim()) { // Check if input is empty or just whitespace
+            setEmptyInputs(prevEmpty => prevEmpty + 1);
+            if (emptyInputs >= 1) {
+                // Navigate to game end page (assuming this is the behavior on game end)
+                window.location.href = "/game-end";
+            } else {
+                document.getElementById("wordInputFeedback").innerText = "Du hast nichts eingegeben. Wenn du zweimal nacheinander nichts eingibst, beenden wird das Spiel. 😉";
+            }
+        } else {
+            // Logic to handle the input word (assuming the word is valid for now)
+            setEmptyInputs(0);
+            // You may need to implement further checks here
+        }
+        setWordInput(""); // Reset input
+    };
+
+    // Update input change logic
+    const handleInputChange = (e) => {
+        setWordInput(e.target.value);
+        document.getElementById("wordInputFeedback").innerText = ""; // Clear feedback
+    };
+
+    const handleKeyPress = (e) => {
+        if (e.key === "Enter") {
+            handleAddWord();
+        }
+    };
+
+
     return (
         <div className="welcome ms-5 me-5">
             <PageTitle title="Wörterwurm" subtitle="Füttere Deinen Wurm!" />
@@ -87,12 +121,20 @@ export default function Game() {
                 <div className="card-body">
                     <h2 className="card-title">Wort hinzufügen</h2>
                     <div className="input-group input-button-container">
-                        <input id="wordInput" type="text" className="form-control"
-                            placeholder="Nächstes Wort eingeben" aria-label="Nächstes Wort eingeben"
+                        <input id="wordInput"
+                            type="text"
+                            className="form-control"
+                            value={wordInput}
+                            onChange={handleInputChange}
+                            onKeyPress={handleKeyPress}
+                            placeholder="Nächstes Wort eingeben"
+                            aria-label="Nächstes Wort eingeben"
                             aria-describedby="addWordButton"></input>
 
-                        <button id="addWordButton" className="btn btn-primary ms-3"
-                            type="button">Hinzufügen</button>
+                        <button id="addWordButton"
+                            className="btn btn-primary ms-3"
+                            type="button"
+                            onClick={handleAddWord}>Hinzufügen</button>
                     </div>
                 </div>
 
