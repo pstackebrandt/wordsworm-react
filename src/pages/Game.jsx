@@ -27,17 +27,20 @@ export default function Game() {
 
             {/* Aktuelle Spieler nennen */}
             <div className="card mt-3">
-                <div className="card-body d-flex flex-column align-items-center">
-                    {/* Update the greeting with the next player's name */}
-                    <h2 id="nextPlayerMessage" className="card-title mb-4">Hallo {nextPlayerName}!</h2>
-                </div>
-                <div className="card-body d-flex flex-column align-items-center">
-                    {/* List all player names */}
-                    <div id="allPlayerNames" className="card-body mb-4">
-                        {players.map(player => <p key={player.id}>{player.name}</p>)}
-                    </div>
+            <div className="card-body d-flex flex-column align-items-center">
+                <h2 id="nextPlayerMessage" className="card-title mb-4">Hallo {nextPlayerName}!</h2>
+            </div>
+            <div className="card-body d-flex flex-column align-items-center">
+                {/* Use d-flex for horizontal listing of player names */}
+                <div id="allPlayerNames" className="card-body d-flex justify-content-start flex-wrap">
+                    {players.map((player, index) => (
+                        <span key={player.id} className={index !== players.length - 1 ? "me-3" : ""}>
+                            {player.name}
+                        </span>
+                    ))}
                 </div>
             </div>
+        </div>
 
             {/* Worteingabe */}
             <div id="wordInputArea" className="card mb-4">
