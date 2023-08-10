@@ -109,9 +109,7 @@ export default function Game() {
                     <h2 className="card-title">Gefundene Wörter</h2>
                     <p className="text-center mb-2 fs-5">Wortschlange anzeigen</p>
                     <div id="wordList" className="word-list d-flex justify-content-center">
-                        {/* Startwort anzeigen und hervorheben */}
                         <span style={{ fontWeight: 'bold', color: 'blue' }}>{currentWord}</span>
-                        {/* Hier können weitere Wörter hinzugefügt werden, z.B. mit map() */}
                     </div>
                 </div>
             </div>
