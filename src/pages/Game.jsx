@@ -22,6 +22,21 @@ export default function Game() {
         setContentVisible(true);
     };
 
+    // Die Liste mit 20 Wörtern
+    const startWords = [
+        "Quatschkopf", "Blubberblase", "Schabernack", "Kichererbse",
+        "Flitzpiepe", "Mumpitz", "Purzelbaum", "Schlawiner",
+        "Dussel", "Turteltaube", "Rumpelstilzchen", "Zauberflöte",
+        "Hokuspokus", "Kuddelmuddel", "Rappelkiste", "Schlitzohr",
+        "Knalltüte", "Papperlapapp", "Wackelpudding", "Gurkenhobel"
+    ];
+
+    // Startwort auswählen
+    const [currentWord, setCurrentWord] = useState(() => {
+        const randomIndex = Math.floor(Math.random() * startWords.length);
+        return startWords[randomIndex];
+    });
+
     return (
         <div className="welcome ms-5 me-5">
             <PageTitle title="Wörterwurm" subtitle="Füttere Deinen Wurm!" />
@@ -86,7 +101,11 @@ export default function Game() {
                 <div className="card-body">
                     <h2 className="card-title">Gefundene Wörter</h2>
                     <p className="text-center mb-2 fs-5">Wortschlange anzeigen</p>
-                    <div id="wordList" className="word-list"></div>
+                    <div id="wordList" className="word-list d-flex justify-content-center">
+                        {/* Startwort anzeigen und hervorheben */}
+                        <span style={{ fontWeight: 'bold', color: 'blue' }}>{currentWord}</span>
+                        {/* Hier können weitere Wörter hinzugefügt werden, z.B. mit map() */}
+                    </div>
                 </div>
             </div>
 
