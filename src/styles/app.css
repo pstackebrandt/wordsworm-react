@@ -22,3 +22,18 @@
 #changeNameButton {
   min-width: 15ch; 
 }
+
+.big-round-button {
+  width: 200px;   /* Oder eine andere gewünschte Größe */
+  height: 200px;  /* Sollte der gleiche Wert wie width sein, um den Button rund zu machen */
+  font-size: 24px; /* Schriftgröße anpassen */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+
+
+
+
