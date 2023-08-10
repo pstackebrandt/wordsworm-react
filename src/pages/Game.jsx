@@ -90,6 +90,7 @@ export default function Game() {
                         <input id="wordInput" type="text" className="form-control"
                             placeholder="Nächstes Wort eingeben" aria-label="Nächstes Wort eingeben"
                             aria-describedby="addWordButton"></input>
+
                         <button id="addWordButton" className="btn btn-primary ms-3"
                             type="button">Hinzufügen</button>
                     </div>
@@ -116,7 +117,7 @@ export default function Game() {
 
             {/* Spiel beenden - nur sichtbar, wenn contentVisible true ist */}
             <div id="finishGameArea" className="text-center" style={{ display: contentVisible ? 'block' : 'none' }}>
-                <Link to="/game-end" className="btn btn-danger btn-lg mt-5 mb-3">Spiel beenden</Link>
+                <Link id="finishGameButton" to="/game-end" className="btn btn-danger btn-lg mt-5 mb-3">Spiel beenden</Link>
             </div>
 
         </div>
