@@ -52,8 +52,8 @@ export default function GameEnd() {
                 <div key={index} className="card mb-4">
                     <div className="card-body text-center">
                         <h4 className="card-title">Ergebnis von {player.name}!</h4>
-                        <p>Du hast <strong className="text-primary">{player.words?.length || 0} Worte</strong> gefunden.</p>
-                        <p>Dabei hast du <strong className="text-primary">{calculateScore(player.words || [])} Punkte</strong> erreicht.</p>
+                        <p>Du hast <strong className="text-primary">{player.foundWords?.length || 0} Worte</strong> gefunden.</p>
+                        <p>Dabei hast du <strong className="text-primary">{calculateScore(player.foundWords || [])} Punkte</strong> erreicht.</p>
                     </div>
                 </div>
             ))}
