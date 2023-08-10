@@ -1,12 +1,18 @@
 // file Game.jsx
 
-import React from "react"
+import React, { useContext } from "react"
 import { Link } from "react-router-dom";
-
+import GameContext from './GameContext';
 import PageTitle from './PageTitle';
 
 // Main content of the page
 export default function Game() {
+    // Access the game context
+    const { players } = useContext(GameContext);
+
+    // Determine the next player's name for greeting
+    const nextPlayerName = players.length > 0 ? players[0].name : "Spieler";
+
 
     return (
         <div className="welcome ms-5 me-5">
@@ -22,7 +28,14 @@ export default function Game() {
             {/* Aktuelle Spieler nennen */}
             <div className="card mt-3">
                 <div className="card-body d-flex flex-column align-items-center">
-                    <h2 className="card-title mb-4">Clara ist am Zug</h2>
+                    {/* Update the greeting with the next player's name */}
+                    <h2 id="nextPlayerMessage" className="card-title mb-4">Hallo {nextPlayerName}!</h2>
+                </div>
+                <div className="card-body d-flex flex-column align-items-center">
+                    {/* List all player names */}
+                    <div id="allPlayerNames" className="card-body mb-4">
+                        {players.map(player => <p key={player.id}>{player.name}</p>)}
+                    </div>
                 </div>
             </div>
 
@@ -42,12 +55,12 @@ export default function Game() {
                 <div id="wordInputHelp" className="card-body text-muted">
                     <p>Das nächste Wort muss mit dem letzten Buchstaben des vorherigen Wortes beginnen.</p>
                 </div>
-                
+
                 <div id="wordInputFeedback" className="card-footer text-muted">
                 </div>
             </div>
-           
-           {/* Gefundene Wörter */}
+
+            {/* Gefundene Wörter */}
             <div id="foundWordsList" className="card mb-4">
                 <div className="card-body">
                     <h2 className="card-title">Gefundene Wörter</h2>
