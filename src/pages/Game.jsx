@@ -104,11 +104,11 @@ export default function Game() {
             </div>
 
             {/* Gefundene Wörter - nur sichtbar, wenn contentVisible true ist */}
-            <div id="foundWordsList" className="card mb-4" style={{ display: contentVisible ? 'block' : 'none' }}>
+            <div id="foundWordsArea" className="card mb-4" style={{ display: contentVisible ? 'block' : 'none' }}>
                 <div className="card-body">
                     <h2 className="card-title">Gefundene Wörter</h2>
                     <p className="text-center mb-2 fs-5">Wortschlange anzeigen</p>
-                    <div id="wordList" className="word-list d-flex justify-content-center">
+                    <div id="foundWordsDisplay" className="word-list d-flex justify-content-center">
                         <span style={{ fontWeight: 'bold', color: 'blue' }}>{currentWord}</span>
                     </div>
                 </div>
