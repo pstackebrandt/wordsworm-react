@@ -122,15 +122,15 @@ export default function Game() {
 
             {/* Spielhinweise */}
             <div className="card mt-3">
-                <div className="card-body d-flex flex-column align-items-center"></div>
-                <p className="text-center mb-2 fs-5">Die Spieler sind nacheinander am Zug.</p>
-                <p className="text-center mb-2 fs-5">Das neue Wort muss mit dem letzten Buchstaben des ersten Wortes beginnen.</p>
+                <h2 className="card-title d-flex flex-column align-items-center mt-3">Spielregeln</h2>
+                <p className="card-body text-center mb-2 fs-5">Die Spieler sind nacheinander am Zug.<br></br>
+                Das neue Wort muss mit dem letzten Buchstaben des ersten Wortes beginnen.</p>
             </div>
 
             {/* Aktuelle Spieler nennen */}
             <div className="card mt-3 mb-3">
-                <div className="card-body d-flex flex-column align-items-center">
-                    <h2 id="currentPlayerMessage" className="card-title mb-0 mt-2">{playerMessage}</h2>
+                <div className="card-title d-flex flex-column align-items-center">
+                    <h2 id="currentPlayerMessage" className="card-title mb-0 mt-3">{playerMessage}</h2>
                 </div>
                 <div className="card-body d-flex flex-column align-items-center">
                     {/* Use d-flex for horizontal listing of player names */}
