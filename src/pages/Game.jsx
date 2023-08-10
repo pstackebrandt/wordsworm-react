@@ -50,8 +50,9 @@ export default function Game() {
 
     const [foundWords, setFoundWords] = useState([currentWord]); // Initialisieren Sie die gefundenen Wörter mit dem Startwort
 
-    const handleAddWord = () => {
-        if (!wordInput.trim()) { // Check if input is empty or just whitespace
+    const addWord = () => {
+        let newWord = wordInput.trim();
+        if (!newWord) { // Check if input is empty or just whitespace
             setEmptyInputs(prevEmpty => prevEmpty + 1);
             if (emptyInputs >= 1) {
                 // Navigate to game end page (assuming this is the behavior on game end)
@@ -59,17 +60,18 @@ export default function Game() {
             } else {
                 document.getElementById("wordInputFeedback").innerText = "Du hast nichts eingegeben. Wenn du zweimal nacheinander nichts eingibst, beenden wird das Spiel. 😉";
             }
-        } else if (wordInput[0].toUpperCase() === foundWords[foundWords.length - 1].slice(-1).toUpperCase()) {
+        } else if (newWord[0].toUpperCase() === foundWords[foundWords.length - 1].slice(-1).toUpperCase()) {
             // Das Wort passt zum letzten Wort
-            setFoundWords(prevWords => [...prevWords, wordInput]);
+
+            setFoundWords(prevWords => [...prevWords, newWord]);
 
             // Wort zum aktuellen Spieler hinzufügen
-            players[currentPlayerIndex].addWord(wordInput);
+            players[currentPlayerIndex].addWord(newWord);
 
             setEmptyInputs(0);
             document.getElementById("wordInputFeedback").innerText = "Das hast du gut gemacht! 🌞";
-        } else {
-            // Das Wort passt nicht
+
+        } else { // Das Wort passt nicht
             document.getElementById("wordInputFeedback").innerText = "Das Wort passt nicht zum letzten Wort. Versuche es noch einmal!";
         }
         setWordInput(""); // Reset input
@@ -83,7 +85,7 @@ export default function Game() {
 
     const handleKeyPress = (e) => {
         if (e.key === "Enter") {
-            handleAddWord();
+            addWord();
         }
     };
 
@@ -91,14 +93,14 @@ export default function Game() {
     const finishGame = () => {
         // Save the foundWords to the local storage
         localStorage.setItem('foundWords', JSON.stringify(foundWords));
-        
+
         // Save the players' data to the local storage
         localStorage.setItem('playerList', JSON.stringify(players));
 
         // Navigate to the game end page
         window.location.href = "/game-end";
     };
-    
+
     return (
         <div className="welcome ms-5 me-5">
             <PageTitle title="Wörterwurm" subtitle="Füttere Deinen Wurm!" />
@@ -155,7 +157,7 @@ export default function Game() {
                         <button id="addWordButton"
                             className="btn btn-primary ms-3"
                             type="button"
-                            onClick={handleAddWord}>Hinzufügen</button>
+                            onClick={addWord}>Hinzufügen</button>
                     </div>
                 </div>
 
