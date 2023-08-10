@@ -32,7 +32,17 @@ export default function GameEnd() {
         return wordCount * 100 + letterCount;
     };
 
-    const totalScore = calculateScore(foundWords);
+    const getTrueFoundWordsOfTeamLength = () => {
+        return getTrueFoundWordsOfTeam().length;
+    }
+
+    const getTrueFoundWordsOfTeam = () => {
+        const correctedWords = [...foundWords];
+        if(correctedWords.length > 0) correctedWords.pop();
+        return correctedWords;
+    }
+
+    const totalScore = calculateScore(getTrueFoundWordsOfTeam());
     const teamNames = players.map(player => player.name).join(", ");
 
     return (
@@ -42,7 +52,7 @@ export default function GameEnd() {
             <div id="teamResultArea" className="card mb-4">
                 <div className="card-body text-center">
                     <h4 className="card-title">Teamergebnis von {teamNames}!</h4>
-                    <p>Das Team hat <strong className="text-primary">{foundWords.length} Worte</strong> gefunden.</p>
+                    <p>Das Team hat <strong className="text-primary">{getTrueFoundWordsOfTeamLength()} Worte</strong> gefunden.</p>
                     <p>Dabei hat es <strong className="text-primary">{totalScore} Punkte</strong> erreicht.</p>
                 </div>
             </div>
@@ -67,4 +77,5 @@ export default function GameEnd() {
         </div>
 
     );
+
 }
