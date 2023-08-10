@@ -12,14 +12,21 @@ export default function Game() {
     // Access the game context
     const { players } = useContext(GameContext);
 
-    // Determine the next player's name for greeting
-    const nextPlayerName = players.length > 0 ? players[0].name : "Spieler";
+    // State für den aktuellen Spieler
+    const [currentPlayerIndex, setCurrentPlayerIndex] = useState(() => {
+        return Math.floor(Math.random() * players.length);
+    });
+
+    const currentPlayerName = players.length > 0 ? players[currentPlayerIndex].name : "Spieler";
 
     // State für die Sichtbarkeit des Inhalts
     const [contentVisible, setContentVisible] = useState(false);
 
-    const handleButtonClick = () => {
+    const startGame = () => {
         setContentVisible(true);
+
+        // Nächsten Spieler auswählen
+        setCurrentPlayerIndex((prevIndex) => (prevIndex + 1) % players.length);
     };
 
     // Die Liste mit 20 Wörtern
@@ -51,7 +58,7 @@ export default function Game() {
             {/* Aktuelle Spieler nennen */}
             <div className="card mt-3">
                 <div className="card-body d-flex flex-column align-items-center">
-                    <h2 id="nextPlayerMessage" className="card-title mb-4">Hallo {nextPlayerName}!</h2>
+                    <h2 id="currentPlayerMessage" className="card-title mb-4">Hallo {currentPlayerName}!</h2>
                 </div>
                 <div className="card-body d-flex flex-column align-items-center">
                     {/* Use d-flex for horizontal listing of player names */}
@@ -68,7 +75,7 @@ export default function Game() {
             {/* Großer Button */}
             {!contentVisible &&
                 <div className="d-flex justify-content-center align-items-center vh-20 m-5">
-                    <button className="btn btn-primary btn-lg rounded-circle big-round-button" onClick={handleButtonClick}>
+                    <button className="btn btn-primary btn-lg rounded-circle big-round-button" onClick={startGame}>
                         Los geht’s!
                     </button>
                 </div>
