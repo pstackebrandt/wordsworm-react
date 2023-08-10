@@ -26,6 +26,39 @@ const GameProvider = ({ children }) => {
     const [foundWordsList, setFoundWordList] = useState(null);
     const [playerList, setPlayerList] = useState(null); // Start with a null value
 
+    const FUNNY_NAMES = [
+        "Schnarchnase",
+        "Muffelmonster",
+        "Witzeklau",
+        "Nasenbohrer",
+        "Flauschekopf",
+        "Kichererbse",
+        "Knuddelbär",
+        "Lachfalte",
+        "MüdeMaus",
+        "Schnuffeltuch",
+        "Zauberzwerg",
+        "Grinsebacke",
+        "Hopsmaus",
+        "Kullerkeks",
+        "Murmeltier",
+        "Naseweis",
+        "Purzelbaum",
+        "Quatschkopf",
+        "Rumpelstilzchen",
+        "Schmunzelmonster",
+        "Tapsfuß",
+        "Ukulele",
+        "Vollpfosten",
+        "Wackelzahn",
+        "Xenophobie",
+        "Yeti",
+        "Zappelphilipp",
+        "Albernuss",
+        "Blubberblase",
+        "Couchpotatoe"
+    ];
+
     // 1. Daten aus dem Local Storage abrufen, wenn der Provider zum ersten Mal geladen wird
     useEffect(() => {
         console.log("GameProvider: useEffect: load data from local storage");
@@ -81,7 +114,26 @@ const GameProvider = ({ children }) => {
     };
 
     const addDefaultPlayer = () => {
-        addPlayer(Player.generateDefaultPlayerName());
+        addPlayer(generateDefaultPlayerName());
+    };
+
+    const generateDefaultPlayerName = () => {
+        // Zufälligen Index aus der Liste auswählen
+        const randomIndex = Math.floor(Math.random() * FUNNY_NAMES.length);
+    
+        // Namen aus der Liste holen und aus der Liste entfernen, um Wiederholungen zu vermeiden
+        const chosenName = FUNNY_NAMES.splice(randomIndex, 1)[0];
+    
+        // Wenn alle Namen verwendet wurden, die Liste zurücksetzen
+        if (FUNNY_NAMES.length === 0) {
+            // (Optional) Sie könnten die ursprüngliche Liste erneut initialisieren oder einen anderen Ansatz wählen
+            // Für dieses Beispiel initialisieren wir die Liste einfach neu.
+            FUNNY_NAMES.push(...[
+                // (Fügen Sie hier die vollständige Liste der Namen ein, wie oben definiert)
+            ]);
+        }
+    
+        return chosenName;
     };
 
     /**

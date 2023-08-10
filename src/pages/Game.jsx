@@ -1,9 +1,7 @@
 // file Game.jsx
 
 import React, { useState, useContext } from "react"
-import { Link } from "react-router-dom";
 
-import { Badge, Button, Card, InputGroup, FormControl } from 'react-bootstrap';
 import GameContext from './GameContext';
 import PageTitle from './PageTitle';
 // import app css
@@ -18,14 +16,13 @@ export default function Game() {
     const [currentPlayerIndex, setCurrentPlayerIndex] = useState(() => {
         return Math.floor(Math.random() * players.length);
     });
-
-    const currentPlayerName = players.length > 0 ? players[currentPlayerIndex].name : "Spieler";
-
+    
     // State für die Sichtbarkeit des Inhalts
     const [contentVisible, setContentVisible] = useState(false);
-
+    
     const getIndexOfNextPlayer = (prevIndex) => (prevIndex + 1) % players.length;
-
+    
+    const currentPlayerName = players.length > 0 ? players[currentPlayerIndex].name : "Spieler";
     const getCurrentPlayer = () => { return players[currentPlayerIndex]; };
 
     // Nächsten Spieler auswählen
@@ -123,8 +120,11 @@ export default function Game() {
             {/* Spielhinweise */}
             <div className="card mt-3">
                 <h2 className="card-title d-flex flex-column align-items-center mt-3">Spielregeln</h2>
-                <p className="card-body text-center mb-2 fs-5">Die Spieler sind nacheinander am Zug.<br></br>
-                Das neue Wort muss mit dem letzten Buchstaben des ersten Wortes beginnen.</p>
+                <p className="card-body text-center mb-2 fs-5">Die Spieler sind nacheinander am Zug.
+                Jedes <span className="text-primary">N</span>eue Wort muss mit dem letzte<span className="text-primary">N</span> Buchstaben seines Vorgängers beginnen.<br></br>
+                Das erste Wort wird festgelegt und erscheint mit den neu gefundenen Worten bei "Der Wörterwurm".</p>
+                <p className="card-body text-center mb-2 fs-5">
+                Für jedes Wort gibt es 100 Punkte. Für jeden Buchstaben streichen wir einen Extra-Bonus ein!</p>
             </div>
 
             {/* Aktuelle Spieler nennen */}
@@ -136,7 +136,7 @@ export default function Game() {
                     {/* Use d-flex for horizontal listing of player names */}
                     <div id="allPlayerNames" className="card-body d-flex justify-content-start flex-wrap">
                         {players.map((player, index) => (
-                            <span key={player.id} className={index !== players.length - 1 ? "me-3" : ""}>
+                            <span key={player.id} className={index !== players.length - 1 ? "me-3 fs-4" : "fs-4"}>
                                 {player.name}
                             </span>
                         ))}
@@ -176,7 +176,7 @@ export default function Game() {
                     </div>
                 </div>
 
-                <div id="wordInputHelp" className="card-body text-muted">
+                <div id="wordInputHelp" className="card-body text-muted fs-5">
                     <p>Das nächste Wort muss mit dem letzten Buchstaben des vorherigen Wortes beginnen.</p>
                 </div>
 
@@ -187,8 +187,7 @@ export default function Game() {
             {/* Gefundene Wörter - nur sichtbar, wenn contentVisible true ist */}
             <div id="foundWordsArea" className="card mb-3 mt-3" style={{ display: contentVisible ? 'block' : 'none' }}>
                 <div className="card-body">
-                    <h2 className="card-title">Gefundene Wörter</h2>
-                    <p className="text-center mb-2 fs-5">Wortschlange anzeigen</p>
+                    <h2 className="card-title">Der Wörterwurm</h2>
 
                     <div id="foundWordsDisplay" className="word-list d-flex justify-content-center">
                         {foundWords.map((word, index) => {
