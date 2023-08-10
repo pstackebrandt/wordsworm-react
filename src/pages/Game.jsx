@@ -2,6 +2,8 @@
 
 import React, { useState, useContext } from "react"
 import { Link } from "react-router-dom";
+
+import { Badge, Button, Card, InputGroup, FormControl } from 'react-bootstrap';
 import GameContext from './GameContext';
 import PageTitle from './PageTitle';
 // import app css
@@ -25,7 +27,7 @@ export default function Game() {
     const getIndexOfNextPlayer = (prevIndex) => (prevIndex + 1) % players.length;
 
     const getCurrentPlayer = () => { return players[currentPlayerIndex]; };
-    
+
     // Nächsten Spieler auswählen
     function setNextPlayer() {
         const nextPlayerIndex = getIndexOfNextPlayer(currentPlayerIndex);
@@ -113,7 +115,7 @@ export default function Game() {
         // Navigate to the game end page
         window.location.href = "/game-end";
     };
-    
+
     return (
         <div className="welcome ms-5 me-5">
             <PageTitle title="Wörterwurm" subtitle="Füttere Deinen Wurm!" />
@@ -187,11 +189,41 @@ export default function Game() {
                 <div className="card-body">
                     <h2 className="card-title">Gefundene Wörter</h2>
                     <p className="text-center mb-2 fs-5">Wortschlange anzeigen</p>
+
                     <div id="foundWordsDisplay" className="word-list d-flex justify-content-center">
-                        {foundWords.map((word, index) => (
-                            <span key={index} style={index === 0 ? { fontWeight: 'bold', color: 'blue' } : {}}>{word}</span>
-                        ))}
+                        {foundWords.map((word, index) => {
+                            let style = {};
+
+                            if (index === 0) { // Erstes Wort
+                                style = {
+                                    fontWeight: 'bold',
+                                    backgroundColor: 'lightgrey',
+                                };
+                            } else if (index === foundWords.length - 1) { // Letztes Wort
+                                style = {
+                                    fontWeight: 'bold',
+                                    color: 'blue',
+                                    backgroundColor: 'lightblue',
+                                };
+                                return (
+                                    <div key={index} style={style} className="m-2 p-2">
+                                        {word}
+                                    </div>
+                                );
+                            } else { // Alle anderen Wörter
+                                style = {
+                                    fontWeight: 'bold',
+                                };
+                            }
+
+                            return (
+                                <div key={index} style={style} className="m-2 p-2">
+                                    {word}
+                                </div>
+                            );
+                        })}
                     </div>
+
                 </div>
             </div>
 
