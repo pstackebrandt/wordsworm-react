@@ -24,7 +24,7 @@ export default function RootLayout() {
         return (
             <Row as="header" className="text-center mb-3">
                 <Col>
-                    <TopNav />
+                    {/* <TopNav /> */}
                 </Col>
             </Row>
         );
