@@ -65,7 +65,7 @@ export default function Game() {
 
             // Wort zum aktuellen Spieler hinzufügen
             players[currentPlayerIndex].addWord(wordInput);
-            
+
             setEmptyInputs(0);
             document.getElementById("wordInputFeedback").innerText = "Das hast du gut gemacht! 🌞";
         } else {
@@ -87,7 +87,18 @@ export default function Game() {
         }
     };
 
+    // Function to be executed when the game finishes.
+    const finishGame = () => {
+        // Save the foundWords to the local storage
+        localStorage.setItem('foundWords', JSON.stringify(foundWords));
+        
+        // Save the players' data to the local storage
+        localStorage.setItem('playerList', JSON.stringify(players));
 
+        // Navigate to the game end page
+        window.location.href = "/game-end";
+    };
+    
     return (
         <div className="welcome ms-5 me-5">
             <PageTitle title="Wörterwurm" subtitle="Füttere Deinen Wurm!" />
@@ -169,9 +180,10 @@ export default function Game() {
                 </div>
             </div>
 
-            {/* Spiel beenden - nur sichtbar, wenn contentVisible true ist */}
+            {/* Spiel beenden - only visible when contentVisible is true */}
             <div id="finishGameArea" className="text-center" style={{ display: contentVisible ? 'block' : 'none' }}>
-                <Link id="finishGameButton" to="/game-end" className="btn btn-danger btn-lg mt-5 mb-3">Spiel beenden</Link>
+                {/* Use the finishGame function instead of directly linking to "/game-end" */}
+                <button id="finishGameButton" onClick={finishGame} className="btn btn-danger btn-lg mt-5 mb-3">Spiel beenden</button>
             </div>
 
         </div>
