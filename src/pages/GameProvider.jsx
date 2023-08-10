@@ -73,7 +73,7 @@ const GameProvider = ({ children }) => {
     const addPlayer = (name) => {
         setPlayerList(prevList => {
             const newPlayerList = new PlayerList();
-            newPlayerList.players = [...prevList.players];
+            newPlayerList.players = prevList ? [...prevList.players] : [];
             const newPlayer = new Player(name);
             newPlayerList.addPlayer(newPlayer);
             return newPlayerList;
