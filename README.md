@@ -1,70 +1,100 @@
-# Getting Started with Create React App
+# Wordsworm
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Summary
 
-## Available Scripts
+Wordsworm is a small game designed to help users expand their vocabulary in a fun and interactive way. The UI uses german.
 
-In the project directory, you can run:
+I developed it as a final project for a 4 weeks React course offered by [Alfatraining](https://www.alfatraining.de/). I undertook this project to demonstrate my proficiency in React and to deepen my understanding of it. We were given 5 days to complete the project.
 
-### `npm start`
+## Current state of the project
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- All pages work
+- Tested on Edge and Chrome
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- tood
+- Code and comments ne
 
-### `npm test`
+## Planned features
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Implemented Functionality
 
-### `npm run build`
+- Play game with one or more players on same screen
+  - Get random start words
+  - Get praise and helpful advice on input of wrong or no words
+  - Get praise on input of correct words ;-)
+  - See the game results on game end page
+  
+- Create, rename, delete players
+  - Get random default player names
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Navigate between pages
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- Hold the state of the game while navigating between pages
+  - Hold state during navigation in local storage
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- Components of different pages can use code of central components and classes
+  - Hold state on page in class instances
+  - Component: GameProvider
+  - Classes/Models: Player, PlayerList, FoundWords
 
-### `npm run eject`
+## Used technologies
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+I used the following technologies:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- React
+- React Router
+- React Hooks
+- React Context
+- React Bootstrap
+- Local Storage
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+![Screenshot of Wordsworm](path/to/screenshot.png)
 
-## Learn More
+## Features
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- **Feature 1**: A brief description of the feature.
+- **Feature 2**: Another brief description.
+- ... (Fügen Sie alle Hauptfunktionen Ihrer App hinzu)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Getting Started
 
-### Code Splitting
+### Prerequisites
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- [Node.js](https://nodejs.org/)
+- [npm](https://www.npmjs.com/) (usually comes with Node.js)
 
-### Analyzing the Bundle Size
+### Installation
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+1. Clone the repository:
+    ```bash
+    git clone https://github.com/pstackebrandt/wordsworm-react.git
+    ```
 
-### Making a Progressive Web App
+2. Navigate to the project directory:
+    ```bash
+    cd wordsworm
+    ```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+3. Install the dependencies:
+    ```bash
+    npm install
+    ```
 
-### Advanced Configuration
+4. Start the development server:
+    ```bash
+    npm start
+    ```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+Visit `http://localhost:3000/` in your browser, and you should see the Wordsworm app running!
 
-### Deployment
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+## License
 
-### `npm run build` fails to minify
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Acknowledgements
+
+- [React](https://reactjs.org/)
+- TODO Any other libraries or tools you used.
+- Mention people or organizations that supported/helped in the project.
