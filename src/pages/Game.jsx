@@ -22,9 +22,6 @@ export default function Game() {
     
     const getIndexOfNextPlayer = (prevIndex) => (prevIndex + 1) % players.length;
     
-    const currentPlayerName = players.length > 0 ? players[currentPlayerIndex].name : "Spieler";
-    const getCurrentPlayer = () => { return players[currentPlayerIndex]; };
-
     // Nächsten Spieler auswählen
     function setNextPlayer() {
         const nextPlayerIndex = getIndexOfNextPlayer(currentPlayerIndex);
@@ -48,7 +45,7 @@ export default function Game() {
     ];
 
     // Startwort auswählen
-    const [currentWord, setCurrentWord] = useState(() => {
+    const [currentWord] = useState(() => {
         const randomIndex = Math.floor(Math.random() * startWords.length);
         return startWords[randomIndex];
     });

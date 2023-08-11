@@ -6,7 +6,6 @@ import { Outlet } from 'react-router-dom'
 // styles
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-import TopNav from '../pages/TopNav';
 import BottomNav from '../pages/BottomNav';
 
 /**
@@ -24,7 +23,6 @@ export default function RootLayout() {
         return (
             <Row as="header" className="text-center mb-3">
                 <Col>
-                    {/* <TopNav /> */}
                 </Col>
             </Row>
         );

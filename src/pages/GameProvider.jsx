@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 
 // Components
-import GameContext, { defaultPlayer } from './GameContext';
+import GameContext from './GameContext';
 
 // Importing your classes
 import FoundWords from '../models/FoundWords';
