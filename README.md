@@ -48,7 +48,6 @@ I used the following technologies:
 - React Bootstrap
 - Local Storage
 
-
 ![Screenshot of Wordsworm](path/to/screenshot.png)
 
 ## Features
@@ -67,27 +66,30 @@ I used the following technologies:
 ### Installation
 
 1. Clone the repository:
+
     ```bash
     git clone https://github.com/pstackebrandt/wordsworm-react.git
     ```
 
 2. Navigate to the project directory:
+
     ```bash
     cd wordsworm
     ```
 
 3. Install the dependencies:
+
     ```bash
     npm install
     ```
 
 4. Start the development server:
+
     ```bash
     npm start
     ```
 
 Visit `http://localhost:3000/` in your browser, and you should see the Wordsworm app running!
-
 
 ## License
 
@@ -98,3 +100,4 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 - [React](https://reactjs.org/)
 - TODO Any other libraries or tools you used.
 - Mention people or organizations that supported/helped in the project.
+  
