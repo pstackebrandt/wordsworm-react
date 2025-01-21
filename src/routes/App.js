@@ -51,7 +51,10 @@ const router = createBrowserRouter(
 
       <Route path="*" element={<NotFound />} />
     </Route>
-  )
+  ),
+  {
+    basename: '/wordsworm-react'
+  }
 )
 
 function App() {
