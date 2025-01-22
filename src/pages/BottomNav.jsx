@@ -1,26 +1,27 @@
+import { Link } from 'react-router-dom';
 import Nav from 'react-bootstrap/Nav';
 
 function BottomNav() {
   return (
     <Nav className="nav-centered nav-item-fill nav-link-dark mt-3 mb-3">
       <Nav.Item>
-        <Nav.Link href="welcome">Willkommen</Nav.Link>
+        <Link to="/welcome" className="nav-link">Willkommen</Link>
       </Nav.Item>
       
       <Nav.Item>
-        <Nav.Link href="player-choice">Spielerwahl</Nav.Link>
+        <Link to="/player-choice" className="nav-link">Spielerwahl</Link>
       </Nav.Item>
 
       <Nav.Item>
-        <Nav.Link href="game">Spielen</Nav.Link>
+        <Link to="/game" className="nav-link">Spielen</Link>
       </Nav.Item>
 
       <Nav.Item>
-        <Nav.Link href="game-end">Ergebnisse</Nav.Link>
+        <Link to="/game-end" className="nav-link">Ergebnisse</Link>
       </Nav.Item>
 
       <Nav.Item>
-        <Nav.Link href="impress">Impressum</Nav.Link>
+        <Link to="/impress" className="nav-link">Impressum</Link>
       </Nav.Item>
     </Nav>
   );

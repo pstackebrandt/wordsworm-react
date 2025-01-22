@@ -1,6 +1,7 @@
 // file Game.jsx
 
 import React, { useState, useContext } from "react"
+import { useNavigate } from 'react-router-dom';
 
 import GameContext from './GameContext';
 import PageTitle from './PageTitle';
@@ -9,6 +10,8 @@ import '../styles/app.css';
 
 // Main content of the page
 export default function Game() {
+    const navigate = useNavigate();
+
     // Access the game context
     const { players } = useContext(GameContext);
 
@@ -62,7 +65,7 @@ export default function Game() {
             setEmptyInputs(prevEmpty => prevEmpty + 1);
             if (emptyInputs >= 1) {
                 // Navigate to game end page (assuming this is the behavior on game end)
-                window.location.href = "/game-end";
+                navigate('/game-end');
             } else {
                 document.getElementById("wordInputFeedback").innerText = "Du hast nichts eingegeben. Wenn du zweimal nacheinander nichts eingibst, beenden wird das Spiel. 😉";
             }
@@ -106,8 +109,8 @@ export default function Game() {
         // Save the players' data to the local storage
         localStorage.setItem('playerList', JSON.stringify(players));
 
-        // Navigate to the game end page
-        window.location.href = "/game-end";
+        // Use navigate instead of window.location.href
+        navigate('/game-end');
     };
 
     return (
