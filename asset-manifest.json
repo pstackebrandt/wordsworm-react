@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/wordsworm-react/static/css/main.61a06266.css",
-    "main.js": "/wordsworm-react/static/js/main.1bee69c6.js",
+    "main.js": "/wordsworm-react/static/js/main.f03cd84a.js",
     "static/js/787.323e4e36.chunk.js": "/wordsworm-react/static/js/787.323e4e36.chunk.js",
     "index.html": "/wordsworm-react/index.html",
     "main.61a06266.css.map": "/wordsworm-react/static/css/main.61a06266.css.map",
-    "main.1bee69c6.js.map": "/wordsworm-react/static/js/main.1bee69c6.js.map",
+    "main.f03cd84a.js.map": "/wordsworm-react/static/js/main.f03cd84a.js.map",
     "787.323e4e36.chunk.js.map": "/wordsworm-react/static/js/787.323e4e36.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.61a06266.css",
-    "static/js/main.1bee69c6.js"
+    "static/js/main.f03cd84a.js"
   ]
 }
